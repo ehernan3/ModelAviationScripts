@@ -1,6 +1,6 @@
 clear;close all
 %% Header
-header = fileread('Header.txt');
+header = fileread('header_iCharger.txt');
 header = split(header,',')';
 %%
 [fileName,filePath] = uigetfile('*.txt');
