@@ -1,5 +1,5 @@
 %%
-[fileName,filePath] = uigetfile('*cleaned.csv');
+[fileName,filePath] = uigetfile('C:\Users\ehern\Documents\Eddie_Stuff\Model Aviation\Helicopter\Brain2-BT\*cleaned.csv');
 opts = detectImportOptions([filePath,fileName]);
 %% Import data
 T = readtable([filePath,fileName],opts);

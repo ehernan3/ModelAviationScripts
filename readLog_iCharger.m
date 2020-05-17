@@ -3,7 +3,7 @@ clear;close all
 header = fileread('header_iCharger.txt');
 header = split(header,',')';
 %%
-[fileName,filePath] = uigetfile('*.txt');
+[fileName,filePath] = uigetfile('C:\Users\ehern\Documents\Eddie_Stuff\Model Aviation\Helicopter\Chargers\Junsi X6\*.txt');
 opts = detectImportOptions([filePath,fileName]);
 %%
 T = readtable([filePath,fileName],opts);
