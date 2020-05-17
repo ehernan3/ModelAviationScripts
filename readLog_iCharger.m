@@ -10,6 +10,8 @@ T = readtable([filePath,fileName],opts);
 %% Fix header
 T.Properties.VariableNames(6:end) = header;
 T.Properties.VariableNames{3} = 'time_ms';
+%% Removing rows with NaN, etc
+T = rmmissing(T);
 %% Plot
 close all
 str = {fileName,...
@@ -22,25 +24,37 @@ for fig = [6:11]%,18] %numel(T.Properties.VariableNames)
     figure(fig);
     myField = T.Properties.VariableNames{fig};
     [conversionFactor, units] = unitConversion(myField);
-    myPlot(fig,T,myField,conversionFactor,units,str)
+    myPlot(fig,T,myField,conversionFactor,units)
+    dim = [0.2 0.5 0.3 0.3];
+    annotation('textbox',dim,'String',str,'FitBoxToText','on',...
+        'BackgroundColor','#FFFFFF','FaceAlpha',0.75,...
+        'Interpreter','none');
 end
 fig=12;figure(fig);
 for idxCell = 12:17
     myField = T.Properties.VariableNames{idxCell};
     [conversionFactor, units] = unitConversion(myField);
     hold all
-    myPlot(fig,T,myField,conversionFactor,units,str)
+    myPlot(fig,T,myField,conversionFactor,units)
     hold off
 end
 grid
 h(fig).YLabel.String = ['Cell voltage',units];
 legend(T.Properties.VariableNames{12:17})
+dim = [0.2 0.5 0.3 0.3];
+annotation('textbox',dim,'String',str,'FitBoxToText','on',...
+    'BackgroundColor','#FFFFFF','FaceAlpha',0.75,...
+    'Interpreter','none');
 %
 fig=13;
 figure(fig);
-    myField = T.Properties.VariableNames{end};
-    [conversionFactor, units] = unitConversion(myField);
-    myPlot(fig,T,myField,conversionFactor,units,str)
+myField = T.Properties.VariableNames{end};
+[conversionFactor, units] = unitConversion(myField);
+myPlot(fig,T,myField,conversionFactor,units)
+dim = [0.2 0.5 0.3 0.3];
+annotation('textbox',dim,'String',str,'FitBoxToText','on',...
+    'BackgroundColor','#FFFFFF','FaceAlpha',0.75,...
+    'Interpreter','none');
 %% subfunctions
 function [conversionFactor, units] = unitConversion(myField)
 switch myField
@@ -65,16 +79,12 @@ switch myField
         units = '';
 end
 end
-% 
-function myPlot(fig,T,myField,conversionFactor,units,str)
+%
+function myPlot(fig,T,myField,conversionFactor,units)
 plot(T.time_ms./1000/60,T.(myField).*conversionFactor)
 h(fig) = gca;
 h(fig).XLabel.String = 'time[min]';
 h(fig).YLabel.String = [myField,units];
 h(fig).YLabel.Interpreter = 'none';
-dim = [0.2 0.5 0.3 0.3];
-annotation('textbox',dim,'String',str,'FitBoxToText','on',...
-    'BackgroundColor','#FFFFFF','FaceAlpha',0.75,...
-    'Interpreter','none');
 grid
 end
