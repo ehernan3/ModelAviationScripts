@@ -1,0 +1,1 @@
+Current, Vin, Vout, Capacity, TempInt, TempExt, Cell1, Cell2, Cell3, Cell4, Cell5, Cell6, Output_Power
