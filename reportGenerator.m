@@ -2,6 +2,14 @@ tic
 import mlreportgen.report.*
 import mlreportgen.dom.*
 rpt = Report('peaks');
+% Title page
+tp = TitlePage; 
+tp.Title = 'iCharger Report';
+tp.Subtitle = myObj.fileName;
+tp.Author = 'Ed Hernandez'; 
+add(rpt,tp); 
+% TOC
+add(rpt,TableOfContents); 
 % Cycle through figures
 h = findobj('type','figure');
 for idx=1:numel(h)
