@@ -2,12 +2,20 @@ tic
 import mlreportgen.report.*
 import mlreportgen.dom.*
 rpt = Report('peaks');
+% Title page
+tp = TitlePage; 
+tp.Title = 'iCharger Report';
+tp.Subtitle = myObj.fileName;
+tp.Author = 'Ed Hernandez'; 
+add(rpt,tp); 
+% TOC
+add(rpt,TableOfContents); 
 % Cycle through figures
 h = findobj('type','figure');
 for idx=1:numel(h)
     % Chapter can be reused
     ch = Chapter();
-    ch.Title = sprintf(['This is the title of chapter',num2str(idx)]);
+    ch.Title = h(idx).Name;
     % Chapter can be reused
     fig = Figure(h(idx).CurrentAxes);
     add(ch,fig);

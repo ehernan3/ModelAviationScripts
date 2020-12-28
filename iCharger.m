@@ -122,5 +122,6 @@ h(fig) = gca;
 h(fig).XLabel.String = 'time[min]';
 h(fig).YLabel.String = [myField,units];
 h(fig).YLabel.Interpreter = 'none';
+h(fig).Parent.Name = myField;
 grid
 end % End myPlot
