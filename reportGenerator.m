@@ -7,7 +7,7 @@ h = findobj('type','figure');
 for idx=1:numel(h)
     % Chapter can be reused
     ch = Chapter();
-    ch.Title = sprintf(['This is the title of chapter',num2str(idx)]);
+    ch.Title = h(idx).Name;
     % Chapter can be reused
     fig = Figure(h(idx).CurrentAxes);
     add(ch,fig);
