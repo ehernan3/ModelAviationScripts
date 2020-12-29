@@ -1,7 +1,7 @@
 tic
 import mlreportgen.report.*
 import mlreportgen.dom.*
-rpt = Report('peaks');
+rpt = Report('iChargerRepot');
 % Title page
 tp = TitlePage; 
 tp.Title = 'iCharger Report';
